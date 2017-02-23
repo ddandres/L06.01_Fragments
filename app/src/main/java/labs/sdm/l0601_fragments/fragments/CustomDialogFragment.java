@@ -5,14 +5,13 @@
 package labs.sdm.l0601_fragments.fragments;
 
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
 import labs.sdm.l0601_fragments.R;
 
@@ -43,12 +42,12 @@ public class CustomDialogFragment extends DialogFragment {
      * so it is safe now access to the activity.
      */
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         // The activity should implement the previously defined interface
         try {
             // Keep a reference to the activity's callback
-            listener = (PositiveButtonClickedListener) activity;
+            listener = (PositiveButtonClickedListener) getActivity();
         } catch (ClassCastException e) {
             e.printStackTrace();
         }

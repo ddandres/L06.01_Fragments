@@ -4,8 +4,8 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
+        android:hint="@string/prefs_user_name_hint"
         android:key="pref_user_name"
         android:summary="@string/prefs_user_name_summary"
-        android:title="@string/prefs_user_name_title"
-        android:hint="@string/prefs_user_name_hint"/>
+        android:title="@string/prefs_user_name_title" />
 </PreferenceScreen>
