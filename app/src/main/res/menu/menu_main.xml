@@ -8,10 +8,10 @@
         android:id="@+id/mExit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/menu_exit"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mSettings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/menu_settings"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>
