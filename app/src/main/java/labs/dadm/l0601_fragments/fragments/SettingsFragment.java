@@ -2,13 +2,13 @@
  * Copyright (c) 2016. David de Andrés and Juan Carlos Ruiz, DISCA - UPV, Development of apps for mobile devices.
  */
 
-package labs.sdm.l0601_fragments.fragments;
+package labs.dadm.l0601_fragments.fragments;
 
 
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
-import labs.sdm.l0601_fragments.R;
+import labs.dadm.l0601_fragments.R;
 
 /**
  * Displays the application Settings to the user through a PreferenceFragment.

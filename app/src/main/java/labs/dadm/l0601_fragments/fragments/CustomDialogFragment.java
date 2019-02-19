@@ -2,7 +2,7 @@
  * Copyright (c) 2016. David de Andrés and Juan Carlos Ruiz, DISCA - UPV, Development of apps for mobile devices.
  */
 
-package labs.sdm.l0601_fragments.fragments;
+package labs.dadm.l0601_fragments.fragments;
 
 
 import android.app.Dialog;
@@ -13,7 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
-import labs.sdm.l0601_fragments.R;
+import labs.dadm.l0601_fragments.R;
 
 /**
  * Creates a DialogFragment to ask confirmation from the user.

@@ -2,7 +2,7 @@
  * Copyright (c) 2016. David de Andrés and Juan Carlos Ruiz, DISCA - UPV, Development of apps for mobile devices.
  */
 
-package labs.sdm.l0601_fragments.activities;
+package labs.dadm.l0601_fragments.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import labs.sdm.l0601_fragments.R;
-import labs.sdm.l0601_fragments.fragments.CustomDialogFragment;
-import labs.sdm.l0601_fragments.fragments.GridImageFragment;
-import labs.sdm.l0601_fragments.fragments.ListStringFragment;
-import labs.sdm.l0601_fragments.fragments.LogInFragment;
-import labs.sdm.l0601_fragments.fragments.SignInFragment;
+import labs.dadm.l0601_fragments.R;
+import labs.dadm.l0601_fragments.fragments.CustomDialogFragment;
+import labs.dadm.l0601_fragments.fragments.GridImageFragment;
+import labs.dadm.l0601_fragments.fragments.ListStringFragment;
+import labs.dadm.l0601_fragments.fragments.LogInFragment;
+import labs.dadm.l0601_fragments.fragments.SignInFragment;
 
 /**
  * Displays different custom Fragments (LogInFragment, SignInFragment, ListStringFragment,
