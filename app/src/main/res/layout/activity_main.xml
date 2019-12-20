@@ -12,7 +12,7 @@
     tools:context=".activities.MainActivity">
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -104,7 +104,7 @@
             app:layout_constraintStart_toEndOf="@+id/rbGridImages"
             app:layout_constraintTop_toTopOf="@+id/rbListStrings" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <!--FrameLayout to display the LogInFragment or SignInFragment-->

@@ -4,9 +4,9 @@
 
 package labs.dadm.l0601_fragments.fragments;
 
-
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceFragmentCompat;
+
+import androidx.preference.PreferenceFragmentCompat;
 
 import labs.dadm.l0601_fragments.R;
 
@@ -22,8 +22,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         // Creates the View to be shown from a Preference resource
-        addPreferencesFromResource(R.xml.preference_settings);
+        setPreferencesFromResource(R.xml.preference_settings, rootKey);
     }
+
 }

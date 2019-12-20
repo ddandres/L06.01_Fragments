@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2016. David de Andrés and Juan Carlos Ruiz, DISCA - UPV, Development of apps for mobile devices.
+ * Copyright (c) 2019. David de Andrés and Juan Carlos Ruiz, DISCA - UPV, Development of apps for mobile devices.
  */
 
 package labs.dadm.l0601_fragments.fragments;
-
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 
 import labs.dadm.l0601_fragments.R;
 
@@ -21,7 +21,7 @@ import labs.dadm.l0601_fragments.R;
 public class CustomDialogFragment extends DialogFragment {
 
     // Hold a reference to the activity's callback to notify the user has confirmed the action
-    PositiveButtonClickedListener listener;
+    private PositiveButtonClickedListener listener;
 
     /**
      * Required empty public constructor.
@@ -42,7 +42,7 @@ public class CustomDialogFragment extends DialogFragment {
      * so it is safe now access to the activity.
      */
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         // The activity should implement the previously defined interface
         try {

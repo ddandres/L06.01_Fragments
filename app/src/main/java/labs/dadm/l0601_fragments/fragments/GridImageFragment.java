@@ -4,10 +4,7 @@
 
 package labs.dadm.l0601_fragments.fragments;
 
-
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import labs.dadm.l0601_fragments.R;
 import labs.dadm.l0601_fragments.adapters.GridImageAdapter;
@@ -28,7 +29,7 @@ import labs.dadm.l0601_fragments.adapters.GridImageAdapter;
 public class GridImageFragment extends Fragment {
 
     // Hold reference to the custom grid adapter
-    GridImageAdapter adapter;
+    private GridImageAdapter adapter;
 
     /**
      * Required empty public constructor.
@@ -50,7 +51,7 @@ public class GridImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Get a reference to the GridView in charge of displaying the List of Drawables
-        GridView grid = (GridView) inflater.inflate(R.layout.fragment_grid_images, null);
+        final GridView grid = (GridView) inflater.inflate(R.layout.fragment_grid_images, container, false);
         // Create an instance of the custom grid adapter
         adapter = new GridImageAdapter(getContext());
         // Associate the adapter to the GridView
@@ -74,7 +75,7 @@ public class GridImageFragment extends Fragment {
      * This method is executed when the activity is created to populate the ActionBar with actions.
      */
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_grid, menu);
     }
 
