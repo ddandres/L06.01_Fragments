@@ -21,7 +21,7 @@ import labs.dadm.l0601_fragments.R;
 public class CustomDialogFragment extends DialogFragment {
 
     // Hold a reference to the activity's callback to notify the user has confirmed the action
-    private PositiveButtonClickedListener listener;
+    private OnPositiveButtonClickedListener listener;
 
     /**
      * Required empty public constructor.
@@ -33,24 +33,15 @@ public class CustomDialogFragment extends DialogFragment {
      * Defines an interface that the parent activity should implement to
      * handle confirmation from the user.
      */
-    public interface PositiveButtonClickedListener {
+    public interface OnPositiveButtonClickedListener {
         void onPositiveButtonClicked();
     }
 
     /**
-     * This method is called whenever the Fragment is attached to the activity,
-     * so it is safe now access to the activity.
+     * This method should be called when the Fragment is attached to the activity.
      */
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        // The activity should implement the previously defined interface
-        try {
-            // Keep a reference to the activity's callback
-            listener = (PositiveButtonClickedListener) getActivity();
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
+    public void setOnPositiveButtonClickedListener(OnPositiveButtonClickedListener listener) {
+        this.listener = listener;
     }
 
     /**

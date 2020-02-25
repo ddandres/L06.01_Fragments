@@ -6,6 +6,8 @@ package labs.dadm.l0601_fragments.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,11 +32,11 @@ import labs.dadm.l0601_fragments.fragments.SignInFragment;
  * Each Fragment has its own OptionsMenu, which is added to the available options on the ActionBar.
  * In addition, the activity presents options to display Settings through a PreferenceFragment, and
  * a DialogFragment to confirm that the user wants to exit the application.
- * The DialogFragment communicates to this activity through the PositiveButtonClickedListener interface.
+ * The DialogFragment communicates to this activity through the OnPositiveButtonClickedListener interface.
  * Up navigation from other activities (like the SettingsActivity) requires this activity to define
  * android:launchMode="singleTop" in the Manifest.
  */
-public class MainActivity extends AppCompatActivity implements CustomDialogFragment.PositiveButtonClickedListener {
+public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnPositiveButtonClickedListener {
 
     // Tags identifying the different fragments
     private static final String LOGIN = "login";
@@ -83,12 +85,23 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     }
 
     /**
-     * Implementation of the PositiveButtonClickedListener interface.
+     * Implementation of the OnPositiveButtonClickedListener interface.
      * Finishes the application upon user's request.
      */
     @Override
     public void onPositiveButtonClicked() {
         finish();
+    }
+
+    /**
+     * Pass a reference to the interface implementation
+     * once the Fragment is attached to the Activity.
+     */
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof CustomDialogFragment) {
+            ((CustomDialogFragment) fragment).setOnPositiveButtonClickedListener(this);
+        }
     }
 
     /**
