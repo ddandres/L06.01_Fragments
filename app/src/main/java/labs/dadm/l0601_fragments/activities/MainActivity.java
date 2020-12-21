@@ -6,14 +6,14 @@ package labs.dadm.l0601_fragments.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import labs.dadm.l0601_fragments.R;
 import labs.dadm.l0601_fragments.fragments.CustomDialogFragment;
@@ -67,19 +67,17 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     public boolean onOptionsItemSelected(MenuItem item) {
 
         // Determine the action to take place according to the Id of the action selected
-        switch (item.getItemId()) {
+        final int itemSelected = item.getItemId();
+        if (itemSelected == R.id.mExit) {
             // Display a dialog to ask the user whether to exit the application
-            case R.id.mExit:
-                // Create and show the CustomDialogFragment
-                (new CustomDialogFragment()).show(getSupportFragmentManager(), DIALOG);
-                return true;
 
+            // Create and show the CustomDialogFragment
+            (new CustomDialogFragment()).show(getSupportFragmentManager(), DIALOG);
+        } else if (itemSelected == R.id.mSettings) {
             // Display the application Settings
-            case R.id.mSettings:
-                // Start the SettingsActivity
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
+            // Start the SettingsActivity
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -118,71 +116,65 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         int layout = 0;
 
         // Determine the action to take according to the clicked RadioButton
-        switch (view.getId()) {
-
+        final int clickedRadioButton = view.getId();
+        if (clickedRadioButton == R.id.rbLogin) {
             // Replace any Fragment in the first FrameLayout by the LogInFragment
-            case R.id.rbLogin:
-                // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-                tag = LOGIN;
-                layout = R.id.flFragment1;
-                // Get a reference to the Fragment identified by the required Tag
-                fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-                // If there is no such reference, then create a new LogInFragment
-                if (fragmentToAdd == null) {
-                    fragmentToAdd = LogInFragment.newInstance("David");
-                }
-                break;
 
+            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            tag = LOGIN;
+            layout = R.id.flFragment1;
+            // Get a reference to the Fragment identified by the required Tag
+            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
+            // If there is no such reference, then create a new LogInFragment
+            if (fragmentToAdd == null) {
+                fragmentToAdd = LogInFragment.newInstance("David");
+            }
+        } else if (clickedRadioButton == R.id.rbSignIn) {
             // Replace any Fragment in the first FrameLayout by the SignInFragment
-            case R.id.rbSignIn:
-                // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-                tag = SIGNIN;
-                layout = R.id.flFragment1;
-                // Get a reference to the Fragment identified by the required Tag
-                fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-                // If there is no such reference, then create a new LogInFragment
-                if (fragmentToAdd == null) {
-                    fragmentToAdd = new SignInFragment();
-                }
-                break;
 
+            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            tag = SIGNIN;
+            layout = R.id.flFragment1;
+            // Get a reference to the Fragment identified by the required Tag
+            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
+            // If there is no such reference, then create a new LogInFragment
+            if (fragmentToAdd == null) {
+                fragmentToAdd = new SignInFragment();
+            }
+        } else if (clickedRadioButton == R.id.rbClear1) {
             // Remove all Fragments from the first FrameLayout
-            case R.id.rbClear1:
-                // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
-                fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment1);
-                break;
 
+            // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
+            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment1);
+        } else if (clickedRadioButton == R.id.rbListStrings) {
             // Replace any Fragment in the second FrameLayout by the ListStringFragment
-            case R.id.rbListStrings:
-                // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-                tag = LIST;
-                layout = R.id.flFragment2;
-                // Get a reference to the Fragment identified by the required Tag
-                fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-                // If there is no such reference, then create a new LogInFragment
-                if (fragmentToAdd == null) {
-                    fragmentToAdd = new ListStringFragment();
-                }
-                break;
 
+            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            tag = LIST;
+            layout = R.id.flFragment2;
+            // Get a reference to the Fragment identified by the required Tag
+            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
+            // If there is no such reference, then create a new LogInFragment
+            if (fragmentToAdd == null) {
+                fragmentToAdd = new ListStringFragment();
+            }
+        } else if (clickedRadioButton == R.id.rbGridImages) {
             // Replace any Fragment in the second FrameLayout by the GridImageFragment
-            case R.id.rbGridImages:
-                // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-                tag = GRID;
-                layout = R.id.flFragment2;
-                // Get a reference to the Fragment identified by the required Tag
-                fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-                // If there is no such reference, then create a new LogInFragment
-                if (fragmentToAdd == null) {
-                    fragmentToAdd = new GridImageFragment();
-                }
-                break;
 
+            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            tag = GRID;
+            layout = R.id.flFragment2;
+            // Get a reference to the Fragment identified by the required Tag
+            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
+            // If there is no such reference, then create a new LogInFragment
+            if (fragmentToAdd == null) {
+                fragmentToAdd = new GridImageFragment();
+            }
+        } else if (clickedRadioButton == R.id.rbClear2) {
             // Remove all Fragments from the second FrameLayout
-            case R.id.rbClear2:
-                // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
-                fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment2);
-                break;
+
+            // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
+            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment2);
         }
 
         // Get a FragmentTransaction to begin some operations with the current FragmentManager

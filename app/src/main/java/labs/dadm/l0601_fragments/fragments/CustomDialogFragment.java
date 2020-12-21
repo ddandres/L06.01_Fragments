@@ -5,8 +5,6 @@
 package labs.dadm.l0601_fragments.fragments;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,13 +53,10 @@ public class CustomDialogFragment extends DialogFragment {
         // Set the massage to display in the Dialog
         builder.setMessage(R.string.dialog_message);
         // Include a Button for handling positive confirmation: exit application
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Notify the activity that the user wants to finish the application
-                if (listener != null) {
-                    listener.onPositiveButtonClicked();
-                }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            // Notify the activity that the user wants to finish the application
+            if (listener != null) {
+                listener.onPositiveButtonClicked();
             }
         });
         // Include a Button for handling negative confirmation: do not exit the application
