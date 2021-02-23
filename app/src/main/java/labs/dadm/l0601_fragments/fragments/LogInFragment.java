@@ -27,9 +27,6 @@ import labs.dadm.l0601_fragments.R;
  */
 public class LogInFragment extends Fragment {
 
-    // Key to be used for the user name in this Fragment's arguments
-    private static final String USERNAME = "username";
-
     /**
      * Required empty public constructor.
      */
