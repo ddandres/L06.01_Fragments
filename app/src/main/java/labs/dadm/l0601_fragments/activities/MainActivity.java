@@ -13,6 +13,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import labs.dadm.l0601_fragments.R;
@@ -36,19 +37,23 @@ import labs.dadm.l0601_fragments.fragments.SignInFragment;
  * Up navigation from other activities (like the SettingsActivity) requires this activity to define
  * android:launchMode="singleTop" in the Manifest.
  */
-public class MainActivity extends AppCompatActivity implements CustomDialogFragment.OnPositiveButtonClickedListener {
-
-    // Tags identifying the different fragments
-    private static final String LOGIN = "login";
-    private static final String SIGNIN = "signin";
-    private static final String LIST = "list";
-    private static final String GRID = "grid";
-    private static final String DIALOG = "dialog";
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportFragmentManager().setFragmentResultListener(
+                "finish_app",
+                this,
+                new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        // Finishes the application upon user's request.
+                        MainActivity.this.finish();
+                    }
+                });
     }
 
     /**
@@ -70,9 +75,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         final int itemSelected = item.getItemId();
         if (itemSelected == R.id.mExit) {
             // Display a dialog to ask the user whether to exit the application
-
-            // Create and show the CustomDialogFragment
-            (new CustomDialogFragment()).show(getSupportFragmentManager(), DIALOG);
+            (new CustomDialogFragment()).show(getSupportFragmentManager(), null);
         } else if (itemSelected == R.id.mSettings) {
             // Display the application Settings
             // Start the SettingsActivity
@@ -83,35 +86,15 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     }
 
     /**
-     * Implementation of the OnPositiveButtonClickedListener interface.
-     * Finishes the application upon user's request.
-     */
-    @Override
-    public void onPositiveButtonClicked() {
-        finish();
-    }
-
-    /**
-     * Pass a reference to the interface implementation
-     * once the Fragment is attached to the Activity.
-     */
-    @Override
-    public void onAttachFragment(@NonNull Fragment fragment) {
-        if (fragment instanceof CustomDialogFragment) {
-            ((CustomDialogFragment) fragment).setOnPositiveButtonClickedListener(this);
-        }
-    }
-
-    /**
      * Replaces or removes Fragments from the UI according to the user's actions.
      */
     public void updateFragments(View view) {
 
-        // Hold references to the Fragment to be added/removed into/from the UI
-        Fragment fragmentToAdd = null;
+        // Hold references to the Fragment to be added/removed into/from the UI and the required Bundle (if any)
+        Class<? extends Fragment> fragmentToAdd = null;
         Fragment fragmentToRemove = null;
-        // Tag to identify the Fragment to be added to the UI
-        String tag = null;
+
+        Bundle bundle = null;
         // Identifier of the Layout that will hold the new Fragment
         int layout = 0;
 
@@ -121,71 +104,55 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
             // Replace any Fragment in the first FrameLayout by the LogInFragment
 
             // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-            tag = LOGIN;
-            layout = R.id.flFragment1;
+            layout = R.id.fcvFragment1;
             // Get a reference to the Fragment identified by the required Tag
-            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-            // If there is no such reference, then create a new LogInFragment
-            if (fragmentToAdd == null) {
-                fragmentToAdd = LogInFragment.newInstance("David");
-            }
+            fragmentToAdd = LogInFragment.class;
+            // Set the information to pass an initial username to the Fragment
+            bundle = new Bundle();
+            bundle.putString("username", "David");
         } else if (clickedRadioButton == R.id.rbSignIn) {
             // Replace any Fragment in the first FrameLayout by the SignInFragment
 
             // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-            tag = SIGNIN;
-            layout = R.id.flFragment1;
+            layout = R.id.fcvFragment1;
             // Get a reference to the Fragment identified by the required Tag
-            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-            // If there is no such reference, then create a new LogInFragment
-            if (fragmentToAdd == null) {
-                fragmentToAdd = new SignInFragment();
-            }
+            fragmentToAdd = SignInFragment.class;
         } else if (clickedRadioButton == R.id.rbClear1) {
             // Remove all Fragments from the first FrameLayout
 
             // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
-            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment1);
+            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.fcvFragment1);
         } else if (clickedRadioButton == R.id.rbListStrings) {
             // Replace any Fragment in the second FrameLayout by the ListStringFragment
 
             // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-            tag = LIST;
-            layout = R.id.flFragment2;
+            layout = R.id.fcvFragment2;
             // Get a reference to the Fragment identified by the required Tag
-            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-            // If there is no such reference, then create a new LogInFragment
-            if (fragmentToAdd == null) {
-                fragmentToAdd = new ListStringFragment();
-            }
+            fragmentToAdd = ListStringFragment.class;
         } else if (clickedRadioButton == R.id.rbGridImages) {
             // Replace any Fragment in the second FrameLayout by the GridImageFragment
 
             // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
-            tag = GRID;
-            layout = R.id.flFragment2;
+            layout = R.id.fcvFragment2;
             // Get a reference to the Fragment identified by the required Tag
-            fragmentToAdd = getSupportFragmentManager().findFragmentByTag(tag);
-            // If there is no such reference, then create a new LogInFragment
-            if (fragmentToAdd == null) {
-                fragmentToAdd = new GridImageFragment();
-            }
+            fragmentToAdd = GridImageFragment.class;
         } else if (clickedRadioButton == R.id.rbClear2) {
             // Remove all Fragments from the second FrameLayout
 
             // Get a reference to the Fragment identified by the Id of its container (LinearLayout)
-            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.flFragment2);
+            fragmentToRemove = getSupportFragmentManager().findFragmentById(R.id.fcvFragment2);
         }
 
         // Get a FragmentTransaction to begin some operations with the current FragmentManager
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setReorderingAllowed(true);
         // Remove the required Fragment
         if (fragmentToRemove != null) {
             transaction.remove(fragmentToRemove);
         }
         // Replace the Fragments in the required Layout by the selected one
         if (fragmentToAdd != null) {
-            transaction.replace(layout, fragmentToAdd, tag);
+            transaction.replace(layout, fragmentToAdd, bundle);
         }
         // Add the transaction to the BackStack, so it can be reversed by pressing the Back button
         transaction.addToBackStack(null);

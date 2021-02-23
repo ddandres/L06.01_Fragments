@@ -106,19 +106,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!--FrameLayout to display the LogInFragment or SignInFragment-->
+    <!--FragmentContainerView to display the LogInFragment or SignInFragment-->
 
-    <FrameLayout
-        android:id="@+id/flFragment1"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcvFragment1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
-    <!--FrameLayout to display the ListStringFragment or GridImageFragment-->
+    <!--FragmentContainerView to display the ListStringFragment or GridImageFragment-->
 
-    <FrameLayout
-        android:id="@+id/flFragment2"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcvFragment2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

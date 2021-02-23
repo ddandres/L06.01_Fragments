@@ -18,28 +18,10 @@ import labs.dadm.l0601_fragments.R;
  */
 public class CustomDialogFragment extends DialogFragment {
 
-    // Hold a reference to the activity's callback to notify the user has confirmed the action
-    private OnPositiveButtonClickedListener listener;
-
     /**
      * Required empty public constructor.
      */
     public CustomDialogFragment() {
-    }
-
-    /**
-     * Defines an interface that the parent activity should implement to
-     * handle confirmation from the user.
-     */
-    public interface OnPositiveButtonClickedListener {
-        void onPositiveButtonClicked();
-    }
-
-    /**
-     * This method should be called when the Fragment is attached to the activity.
-     */
-    public void setOnPositiveButtonClickedListener(OnPositiveButtonClickedListener listener) {
-        this.listener = listener;
     }
 
     /**
@@ -48,16 +30,15 @@ public class CustomDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         // Build an AlertDialog to ask for confirmation before finishing the application
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         // Set the massage to display in the Dialog
         builder.setMessage(R.string.dialog_message);
         // Include a Button for handling positive confirmation: exit application
         builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
             // Notify the activity that the user wants to finish the application
-            if (listener != null) {
-                listener.onPositiveButtonClicked();
-            }
+            getParentFragmentManager().setFragmentResult("finish_app", new Bundle());
         });
         // Include a Button for handling negative confirmation: do not exit the application
         // No need for an onClickListener() here, as no action will take place
