@@ -10,10 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import labs.dadm.l0601_fragments.R;
@@ -47,12 +45,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().setFragmentResultListener(
                 "finish_app",
                 this,
-                new FragmentResultListener() {
-                    @Override
-                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        // Finishes the application upon user's request.
-                        MainActivity.this.finish();
-                    }
+                (requestKey, result) -> {
+                    // Finishes the application upon user's request.
+                    MainActivity.this.finish();
                 });
     }
 

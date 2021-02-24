@@ -21,8 +21,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Get a FragmentTransaction to begin some operations with the current FragmentManager
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setReorderingAllowed(true);
         // Replace all elements in the given Layout by the SettingsFragment
-        transaction.replace(android.R.id.content, new SettingsFragment());
+        transaction.replace(android.R.id.content, SettingsFragment.class, null);
         // Make changes effective
         transaction.commit();
     }
