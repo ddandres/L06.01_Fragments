@@ -98,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
         if (clickedRadioButton == R.id.rbLogin) {
             // Replace any Fragment in the first FrameLayout by the LogInFragment
 
-            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            // Keep a reference to the FragmentContainerView to be used to add the Fragment
             layout = R.id.fcvFragment1;
-            // Get a reference to the Fragment identified by the required Tag
+            // Get a reference to the Fragment class
             fragmentToAdd = LogInFragment.class;
             // Set the information to pass an initial username to the Fragment
             bundle = new Bundle();
@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (clickedRadioButton == R.id.rbSignIn) {
             // Replace any Fragment in the first FrameLayout by the SignInFragment
 
-            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            // Keep a reference to the FragmentContainerView to be used to add the Fragment
             layout = R.id.fcvFragment1;
-            // Get a reference to the Fragment identified by the required Tag
+            // Get a reference to the Fragment class
             fragmentToAdd = SignInFragment.class;
         } else if (clickedRadioButton == R.id.rbClear1) {
             // Remove all Fragments from the first FrameLayout
@@ -120,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
         } else if (clickedRadioButton == R.id.rbListStrings) {
             // Replace any Fragment in the second FrameLayout by the ListStringFragment
 
-            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            // Keep a reference to the FragmentContainerView to be used to add the Fragment
             layout = R.id.fcvFragment2;
-            // Get a reference to the Fragment identified by the required Tag
+            // Get a reference to the Fragment class
             fragmentToAdd = ListStringFragment.class;
         } else if (clickedRadioButton == R.id.rbGridImages) {
             // Replace any Fragment in the second FrameLayout by the GridImageFragment
 
-            // Keep a reference to the Tag and FrameLayout to be used to add the Fragment
+            // Keep a reference to the FragmentContainerView to be used to add the Fragment
             layout = R.id.fcvFragment2;
-            // Get a reference to the Fragment identified by the required Tag
+            // Get a reference to the Fragment class
             fragmentToAdd = GridImageFragment.class;
         } else if (clickedRadioButton == R.id.rbClear2) {
             // Remove all Fragments from the second FrameLayout
