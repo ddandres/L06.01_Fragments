@@ -5,14 +5,13 @@
 package labs.dadm.l0601_fragments.activities;
 
 import android.os.Bundle;
-import androidx.fragment.app.FragmentTransaction;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import labs.dadm.l0601_fragments.fragments.SettingsFragment;
 
-/*
- * Displays the application Settings using a PreferenceFragment.
- */
+// Displays the application Settings using a PreferenceFragment.
 public class SettingsActivity extends AppCompatActivity {
 
     @Override

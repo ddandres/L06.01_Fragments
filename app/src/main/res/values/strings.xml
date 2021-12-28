@@ -25,11 +25,12 @@
     <string name="menu_exit">Exit</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_fragment_login">Option Login</string>
-    <string name="menu_fragment_sigin">Option Sign in</string>
+    <string name="menu_fragment_signin">Option Sign in</string>
     <string name="menu_fragment_list">Option List</string>
     <string name="menu_fragment_grid">Option Grid</string>
     <!--Strings related to the PreferenceFragment-->
     <string name="prefs_user_name_title">User name</string>
-    <string name="prefs_user_name_summary">Name that identifies the user within this application</string>
+    <string name="prefs_user_name_summary">
+        Name that identifies the user within this application</string>
     <string name="prefs_user_name_hint">Introduce your user name</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,26 +22,32 @@ import labs.dadm.l0601_fragments.fragments.ListStringFragment;
 import labs.dadm.l0601_fragments.fragments.LogInFragment;
 import labs.dadm.l0601_fragments.fragments.SignInFragment;
 
-/**
- * Displays different custom Fragments (LogInFragment, SignInFragment, ListStringFragment,
- * GridImageFragment) within the same screen.
- * There exist two FrameLayout, that could be empty, or display one of the two Fragments:
- * LogInFragment and SignInFragment in the first one, and ListStringFragment and
- * GridImageFragment in the other.
- * Performed transactions are added to a BackStack, so they can be undone by pressing the Back button.
- * Each Fragment has its own OptionsMenu, which is added to the available options on the ActionBar.
- * In addition, the activity presents options to display Settings through a PreferenceFragment, and
- * a DialogFragment to confirm that the user wants to exit the application.
- * The DialogFragment communicates to this activity through the OnPositiveButtonClickedListener interface.
- * Up navigation from other activities (like the SettingsActivity) requires this activity to define
- * android:launchMode="singleTop" in the Manifest.
- */
+// Displays different custom Fragments (LogInFragment, SignInFragment, ListStringFragment,
+// GridImageFragment) within the same screen.
+// There exist two FrameLayout, that could be empty, or display one of the two Fragments:
+// LogInFragment and SignInFragment in the first one, and ListStringFragment and
+// GridImageFragment in the other.
+// Performed transactions are added to a BackStack, so they can be undone by pressing the Back button.
+// Each Fragment has its own OptionsMenu, which is added to the available options on the ActionBar.
+// In addition, the activity presents options to display Settings through a PreferenceFragment, and
+// a DialogFragment to confirm that the user wants to exit the application.
+// The DialogFragment communicates to this activity through the OnPositiveButtonClickedListener interface.
+// Up navigation from other activities (like the SettingsActivity) requires this activity to define
+// android:launchMode="singleTop" in the Manifest.
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        View.OnClickListener listener = v -> updateFragments(v.getId());
+        findViewById(R.id.rbLogin).setOnClickListener(listener);
+        findViewById(R.id.rbSignIn).setOnClickListener(listener);
+        findViewById(R.id.rbClear1).setOnClickListener(listener);
+        findViewById(R.id.rbListStrings).setOnClickListener(listener);
+        findViewById(R.id.rbGridImages).setOnClickListener(listener);
+        findViewById(R.id.rbClear2).setOnClickListener(listener);
 
         getSupportFragmentManager().setFragmentResultListener(
                 "finish_app",
@@ -51,18 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * This method is executed when the activity is created to populate the ActionBar with actions.
-     */
+    // This method is executed when the activity is created to populate the ActionBar with actions.
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    /**
-     * This method is executed when any action from the ActionBar is selected.
-     */
+    // This method is executed when any action from the ActionBar is selected.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -80,12 +83,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Replaces or removes Fragments from the UI according to the user's actions.
-     */
-    public void updateFragments(View view) {
+    // Replaces or removes Fragments from the UI according to the user's actions.
+    private void updateFragments(int clickedRadioButton) {
 
-        // Hold references to the Fragment to be added/removed into/from the UI and the required Bundle (if any)
+        // Hold references to the Fragment to be added/removed into/from the UI
+        // and the required Bundle (if any)
         Class<? extends Fragment> fragmentToAdd = null;
         Fragment fragmentToRemove = null;
 
@@ -94,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         int layout = 0;
 
         // Determine the action to take according to the clicked RadioButton
-        final int clickedRadioButton = view.getId();
         if (clickedRadioButton == R.id.rbLogin) {
             // Replace any Fragment in the first FrameLayout by the LogInFragment
 

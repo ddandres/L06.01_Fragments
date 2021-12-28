@@ -7,6 +7,6 @@
     <item
         android:id="@+id/mSignin"
         android:icon="@android:drawable/ic_menu_set_as"
-        android:title="@string/menu_fragment_sigin"
+        android:title="@string/menu_fragment_signin"
         app:showAsAction="never" />
 </menu>

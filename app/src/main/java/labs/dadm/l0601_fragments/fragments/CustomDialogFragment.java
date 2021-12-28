@@ -13,20 +13,14 @@ import androidx.fragment.app.DialogFragment;
 
 import labs.dadm.l0601_fragments.R;
 
-/**
- * Creates a DialogFragment to ask confirmation from the user.
- */
+// Creates a DialogFragment to ask confirmation from the user.
 public class CustomDialogFragment extends DialogFragment {
 
-    /**
-     * Required empty public constructor.
-     */
+    // Required empty public constructor.
     public CustomDialogFragment() {
     }
 
-    /**
-     * Builds a custom AlertDialog to ask the user for confirmation.
-     */
+    // Builds a custom AlertDialog to ask the user for confirmation.
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

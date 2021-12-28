@@ -10,14 +10,10 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import labs.dadm.l0601_fragments.R;
 
-/**
- * Displays the application Settings to the user through a PreferenceFragment.
- */
+// Displays the application Settings to the user through a PreferenceFragment.
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    /**
-     * Required empty public constructor.
-     */
+    // Required empty public constructor.
     public SettingsFragment() {
     }
 
